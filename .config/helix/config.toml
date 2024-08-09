@@ -1,0 +1,57 @@
+theme = "noctis"
+
+[editor]
+line-number = "relative"
+cursorline = true
+rulers = [79]
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "error"
+
+[editor.lsp]
+enable = true
+display-messages = true
+display-inlay-hints = true
+
+[editor.statusline]
+left = [
+  "mode",
+  "spinner",
+  "version-control",
+  "file-name",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+
+right = [
+  "file-type",
+  "diagnostics",
+  "selections",
+  "register",
+  "position",
+  "file-encoding",
+]
+
+[editor.whitespace]
+render = "all"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+render = true
+character = "┆"
+skip-levels = 1
+
+[editor.soft-wrap]
+wrap-at-text-width = true
+wrap-indicator = "⤷"
+
+[keys.insert]
+"C-[" = "normal_mode"
