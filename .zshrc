@@ -102,6 +102,68 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH=$HOME/.local/bin:$PATH
 
+##############################################################################
+# Custom exports
+##############################################################################
+export PATH=$HOME/.local/bin:$PATH
+export EDITOR="hx"
+##############################################################################
+
+
+##############################################################################
+# Custom Evals
+##############################################################################
 eval "$(zoxide init zsh)"
+##############################################################################
+
+
+##############################################################################
+# Custom aliases
+##############################################################################
+alias vi=$EDITOR
+alias vim=$EDITOR
+alias emacs=$EDITOR
+alias nano=$EDITOR
+alias ed=$EDITOR
+alias ls="eza"
+alias cat="bat"
+##############################################################################
+
+
+##############################################################################
+# Custom functions
+##############################################################################
+
+# Override sudo when attempting to edit a file. This utilizes sudoedit instead
+sudo () {
+  # List of editors to override to sudoedit
+	local editors=("vim" "vi" "emacs" "nano" "hx" "ed")
+
+	# Parse all of the command-line arguments.
+	local args=("$@")
+
+	# Iterate over all of the editors and attempt to intercept editor commands.
+	for editor in $editors
+	do
+		if [[ $args[1] =~ $editor ]]
+		then
+
+		  # Notify the user we are not using sudo.
+			echo "INTERRUPT: Using \`sudoedit\` for priviledged edit." 2> /dev/stderr
+
+      # Strip off the editor from the arguments.		
+			args=("${(@)args:1}")
+
+			# Call sudoedit
+			/usr/bin/sudoedit $args
+
+			# Stop looking
+			return
+		fi
+	done
+
+  # If we aren't editing files, just use sudo...
+	/usr/bin/sudo $args
+}
+##############################################################################
