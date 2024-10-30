@@ -23,4 +23,7 @@ style = "Regular"
 [env]
 TERM = "xterm-256color"
 
-
+[keyboard]
+bindings = [
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" }
+]
