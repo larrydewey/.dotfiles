@@ -140,13 +140,16 @@ sudo () {
   # List of editors to override to sudoedit
 	local editors=("vim" "vi" "emacs" "nano" "hx" "ed")
 
+	# Parse all command arguments
+	local args=("${@}")
+	
 	# Parse all of the command-line arguments.
-	local args=("${(L)@}")
+	local lower_case_args=("${(L)@}")
 
 	# Iterate over all of the editors and attempt to intercept editor commands.
 	for editor in $editors
 	do
-		if [[ $args[1] = $editor ]]
+		if [[ $lower_case_args[1] = $editor ]]
 		then
 
 		  # Notify the user we are not using sudo.
