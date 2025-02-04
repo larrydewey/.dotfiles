@@ -170,3 +170,7 @@ sudo () {
 	/usr/bin/sudo $args
 }
 ##############################################################################
+
+
+# Github Copilot AMD
+export NODE_EXTRA_CA_CERTS="${HOME}/AMD_CA.crt"
